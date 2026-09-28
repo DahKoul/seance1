@@ -131,6 +131,7 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   color: var(--black);
 }
 /*Q3 : le label est placer appres l'input car le label est dans la case de l'input */
+/*Q4 : top : positionnement, transform : animation */
 
 /* =========================================================
    NIVEAU 3 — CARTES
@@ -148,9 +149,14 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   overflow: hidden; /* important pour le zoom de l'image */
   box-shadow: 0 1px 3px rgba(12, 16, 31, .08);
   /* TODO 3.1 : transition sur transform et box-shadow */
+  transition: transform 0.4s ease-out , box-shadow 0.1s ease-out;
 }
 
 /* TODO 3.1 : au survol, la carte monte de 6px et son ombre s'agrandit */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(12, 16, 31, .15);
+}
 
 .card__media {
   height: 140px;
@@ -170,6 +176,11 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   font-weight: 700;
   font-size: 1.4rem;
   /* TODO 3.2 : transition sur transform */
+  transition: transform 0.7s ease;
+}
+
+.card:hover .card__visual {
+  transform: scale(1.3);
 }
 
 /* TODO 3.2 : au survol de la CARTE, le visuel grossit (scale 1.15) */
@@ -177,6 +188,8 @@ h2 { color: var(--navy); font-size: 1.3rem; }
 .card__body { padding: 1rem 1.25rem 1.25rem; }
 .card__body h3 { margin: 0 0 .4rem; color: var(--navy); }
 .card__body p { margin: 0; color: var(--muted); }
+
+/* Q5: margin-top : marge mais transform animation*/
 
 /* =========================================================
    BONUS — CARTE QUI SE RETOURNE
@@ -188,6 +201,7 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   height: 200px;
   cursor: pointer;
   /* TODO B.1 : perspective */
+  perspective : 1000px;
 }
 
 .flip__inner {
@@ -195,9 +209,15 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   width: 100%;
   height: 100%;
   /* TODO B.2 : transition + transform-style */
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
 }
 
 /* TODO B.3 : au survol OU au focus de .flip, retourner .flip__inner */
+.flip:hover .flip__inner,
+.flip:focus-within .flip__inner {
+  transform: rotateY(180deg);
+}
 
 .flip__face {
   position: absolute;
@@ -208,10 +228,15 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   flex-direction: column;
   justify-content: center;
   /* TODO B.4 : cacher la face quand elle est de dos */
+  backface-visibility: hidden;
 }
 
 .flip__front { background: var(--light); color: var(--navy); }
-.flip__back  { background: var(--navy); color: var(--white); /* TODO B.5 */ }
+.flip__back  { background: var(--navy); color: var(--white); /* TODO B.5 */ 
+  transform: rotateY(180deg);
+}
+
+/* Q5: retirer perspective dans .flip rend l'animation platte (card en parllelle) */
 
 .flip__label {
   margin: 0 0 .5rem;
