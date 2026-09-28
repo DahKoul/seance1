@@ -95,10 +95,17 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   border: 2px solid #D5D9E2;
   border-radius: var(--radius);
   outline: none;
+
+  transition: border-color 0.4s ease, box-shadow 0.2s ease;
   /* TODO 2.2 : transition sur border-color et box-shadow */
 }
 
 /* TODO 2.1 : bordure verte + halo (box-shadow) quand le champ a le focus */
+
+.field input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(118, 183, 41, .2);
+}
 
 .field label {
   position: absolute;
@@ -107,11 +114,23 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   color: var(--muted);
   pointer-events: none; /* le clic traverse le label et atteint l'input */
   /* TODO 2.3 : point d'appui de la transformation + transition */
+  transform-origin: left top;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 /* TODO 2.3 : label flottant
    Quand l'input a le focus OU contient du texte,
    le label monte et rétrécit (translateY + scale). */
+
+.field input:focus + label {
+  transform: translateY(-.8rem) scale(.8);
+  color: var(--green);
+}
+.field input:not(:placeholder-shown) + label {
+  transform: translateY(-.8rem) scale(.8);
+  color: var(--black);
+}
+/*Q3 : le label est placer appres l'input car le label est dans la case de l'input */
 
 /* =========================================================
    NIVEAU 3 — CARTES
