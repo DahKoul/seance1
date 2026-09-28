@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TP1 — Kit d'interface animé</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Kit d'interface animé</h1>
+    <p>Animation Web — Séance 1 : transitions et transformations</p>
+  </header>
+
+  <main>
+    <!-- ============ NIVEAU 1 ============ -->
+    <section id="boutons">
+      <h2>Niveau 1 — Boutons</h2>
+      <div class="row">
+        <button class="btn">Enregistrer</button>
+        <button class="btn btn--secondary">Annuler</button>
+        <button class="btn btn--danger">Supprimer</button>
+      </div>
+    </section>
+
+    <!-- ============ NIVEAU 2 ============ -->
+    <section id="formulaire">
+      <h2>Niveau 2 — Formulaire</h2>
+      <form class="form" onsubmit="return false">
+        <!-- Attention : le label est placé APRÈS l'input (nécessaire pour le sélecteur +) -->
+        <div class="field">
+          <input id="nom" type="text" placeholder=" " autocomplete="off">
+          <label for="nom">Nom complet</label>
+        </div>
+        <div class="field">
+          <input id="email" type="email" placeholder=" " autocomplete="off">
+          <label for="email">Adresse e-mail</label>
+        </div>
+        <button class="btn">Envoyer</button>
+      </form>
+    </section>
+
+    <!-- ============ NIVEAU 3 ============ -->
+    <section id="cartes">
+      <h2>Niveau 3 — Cartes</h2>
+      <div class="cards">
+        <article class="card">
+          <div class="card__media"><span class="card__visual">L2</span></div>
+          <div class="card__body">
+            <h3>Projet PHP</h3>
+            <p>Application web en PHP et MySQL, sans framework.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__media"><span class="card__visual">L3</span></div>
+          <div class="card__body">
+            <h3>Projet CodeIgniter 4</h3>
+            <p>Back-end CI4 et front en JavaScript qui consomme du JSON.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__media"><span class="card__visual">UX</span></div>
+          <div class="card__body">
+            <h3>Animation web</h3>
+            <p>Des animations utiles, performantes et accessibles.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ BONUS ============ -->
+    <section id="bonus">
+      <h2>Bonus — Carte qui se retourne</h2>
+      <!-- tabindex="0" : la carte peut recevoir le focus au clavier -->
+      <div class="flip" tabindex="0">
+        <div class="flip__inner">
+          <div class="flip__face flip__front">
+            <p class="flip__label">Question</p>
+            <p>Quelle propriété faut-il placer sur le parent pour obtenir un effet 3D ?</p>
+          </div>
+          <div class="flip__face flip__back">
+            <p class="flip__label">Réponse</p>
+            <p><code>perspective</code></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
