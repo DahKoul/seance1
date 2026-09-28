@@ -4,6 +4,13 @@
    Vous ne modifiez QUE les blocs marqués TODO.
    ========================================================= */
 
+/*Q1.1 : ligne qui provoque le changement instantane : btn:hover */
+/*Q1.6 : la transition ne marche pas car il ne se fait dans button pas dans son hover */
+/*Q3 : le label est placer appres l'input car le label est dans la case de l'input */
+/*Q4 : top : positionnement, transform : animation */
+/* Q5: margin-top : marge mais transform animation*/
+/* Q6: retirer perspective dans .flip rend l'animation platte (card en parllelle) */
+
 :root {
   --navy: #222E76;
   --navy-light: #283D91;
@@ -16,7 +23,9 @@
   --radius: 10px;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -26,14 +35,42 @@ body {
   line-height: 1.5;
 }
 
-.page-header { padding: 2rem 1.5rem 1rem; max-width: 1000px; margin: 0 auto; }
-.page-header h1 { color: var(--navy); margin: 0 0 .25rem; }
-.page-header p { color: var(--muted); margin: 0; }
+.page-header {
+  padding: 2rem 1.5rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-main { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem 4rem; }
-section { margin-top: 2.5rem; }
-h2 { color: var(--navy); font-size: 1.3rem; }
-.row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.page-header h1 {
+  color: var(--navy);
+  margin: 0 0 .25rem;
+}
+
+.page-header p {
+  color: var(--muted);
+  margin: 0;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+section {
+  margin-top: 2.5rem;
+}
+
+h2 {
+  color: var(--navy);
+  font-size: 1.3rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
 /* =========================================================
    NIVEAU 1 — BOUTONS
@@ -47,7 +84,6 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   background-color: var(--navy);
   color: var(--white);
   cursor: pointer;
-  /*Q1.1 : ligne qui provoque le changement instantane : btn:hover */
 
   /* TODO 1.2 : ajouter une transition sur background-color */
   transition: background-color 0.2s ease;
@@ -62,7 +98,7 @@ h2 { color: var(--navy); font-size: 1.3rem; }
 }
 
 /* TODO 1.4 : effet "enfoncé" au clic (:active), légère réduction de taille */
-.btn:active{
+.btn:active {
   transform: translateY(0) scale(.97);
 }
 
@@ -73,20 +109,36 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   outline-offset: 3px;
 }
 
-.btn--secondary { background-color: var(--light); color: var(--navy); }
-.btn--secondary:hover { background-color: #E2E6EE; }
+.btn--secondary {
+  background-color: var(--light);
+  color: var(--navy);
+}
 
-.btn--danger { background-color: var(--red); }
-.btn--danger:hover { background-color: #A93226; }
+.btn--secondary:hover {
+  background-color: #E2E6EE;
+}
 
-/*Q1.6 : la transition ne marche pas car il ne se fait dans button pas dans son hover */
+.btn--danger {
+  background-color: var(--red);
+}
+
+.btn--danger:hover {
+  background-color: #A93226;
+}
+
 
 /* =========================================================
    NIVEAU 2 — FORMULAIRE
    ========================================================= */
-.form { display: grid; gap: 1.25rem; max-width: 420px; }
+.form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 420px;
+}
 
-.field { position: relative; }
+.field {
+  position: relative;
+}
 
 .field input {
   width: 100%;
@@ -112,7 +164,8 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   left: .9rem;
   top: 1rem;
   color: var(--muted);
-  pointer-events: none; /* le clic traverse le label et atteint l'input */
+  pointer-events: none;
+  /* le clic traverse le label et atteint l'input */
   /* TODO 2.3 : point d'appui de la transformation + transition */
   transform-origin: left top;
   transition: transform 0.2s ease, color 0.2s ease;
@@ -122,16 +175,15 @@ h2 { color: var(--navy); font-size: 1.3rem; }
    Quand l'input a le focus OU contient du texte,
    le label monte et rétrécit (translateY + scale). */
 
-.field input:focus + label {
+.field input:focus+label {
   transform: translateY(-.8rem) scale(.8);
   color: var(--green);
 }
-.field input:not(:placeholder-shown) + label {
+
+.field input:not(:placeholder-shown)+label {
   transform: translateY(-.8rem) scale(.8);
   color: var(--black);
 }
-/*Q3 : le label est placer appres l'input car le label est dans la case de l'input */
-/*Q4 : top : positionnement, transform : animation */
 
 /* =========================================================
    NIVEAU 3 — CARTES
@@ -146,10 +198,11 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   background: var(--white);
   border: 1px solid #E2E6EE;
   border-radius: var(--radius);
-  overflow: hidden; /* important pour le zoom de l'image */
+  overflow: hidden;
+  /* important pour le zoom de l'image */
   box-shadow: 0 1px 3px rgba(12, 16, 31, .08);
   /* TODO 3.1 : transition sur transform et box-shadow */
-  transition: transform 0.4s ease-out , box-shadow 0.1s ease-out;
+  transition: transform 0.4s ease-out, box-shadow 0.1s ease-out;
 }
 
 /* TODO 3.1 : au survol, la carte monte de 6px et son ombre s'agrandit */
@@ -185,11 +238,20 @@ h2 { color: var(--navy); font-size: 1.3rem; }
 
 /* TODO 3.2 : au survol de la CARTE, le visuel grossit (scale 1.15) */
 
-.card__body { padding: 1rem 1.25rem 1.25rem; }
-.card__body h3 { margin: 0 0 .4rem; color: var(--navy); }
-.card__body p { margin: 0; color: var(--muted); }
+.card__body {
+  padding: 1rem 1.25rem 1.25rem;
+}
 
-/* Q5: margin-top : marge mais transform animation*/
+.card__body h3 {
+  margin: 0 0 .4rem;
+  color: var(--navy);
+}
+
+.card__body p {
+  margin: 0;
+  color: var(--muted);
+}
+
 
 /* =========================================================
    BONUS — CARTE QUI SE RETOURNE
@@ -201,7 +263,7 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   height: 200px;
   cursor: pointer;
   /* TODO B.1 : perspective */
-  perspective : 1000px;
+  perspective: 1000px;
 }
 
 .flip__inner {
@@ -231,12 +293,18 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   backface-visibility: hidden;
 }
 
-.flip__front { background: var(--light); color: var(--navy); }
-.flip__back  { background: var(--navy); color: var(--white); /* TODO B.5 */ 
+.flip__front {
+  background: var(--light);
+  color: var(--navy);
+}
+
+.flip__back {
+  background: var(--navy);
+  color: var(--white);
+  /* TODO B.5 */
   transform: rotateY(180deg);
 }
 
-/* Q5: retirer perspective dans .flip rend l'animation platte (card en parllelle) */
 
 .flip__label {
   margin: 0 0 .5rem;
@@ -246,4 +314,7 @@ h2 { color: var(--navy); font-size: 1.3rem; }
   text-transform: uppercase;
   color: var(--green);
 }
-.flip code { font-size: 1.4rem; }
+
+.flip code {
+  font-size: 1.4rem;
+}
